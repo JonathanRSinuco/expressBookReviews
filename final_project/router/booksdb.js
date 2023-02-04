@@ -11,4 +11,20 @@ let books = {
       10: {"author": "Samuel Beckett","title": "Molloy, Malone Dies, The Unnamable, the trilogy", "reviews": {} }
 }
 
-module.exports=books;
+const getBooks = () => Promise.resolve(books)
+const getBookbyID = (id) => Promise.resolve(books[id])
+const getBookbyAuthor = (author) => new Promise((resolve,reject) => {
+    let booksArray = Object.values(books)
+    resolve(booksArray.filter((book) => book.author === author))    
+})
+const getBookbyTitle = (title) => new Promise((resolve,reject) => {
+    let booksArray = Object.values(books)
+    resolve(booksArray.filter((book) => book.title === title))
+})
+   
+module.exports={
+    getBooks, 
+    getBookbyID,
+    getBookbyAuthor,
+    getBookbyTitle
+};
